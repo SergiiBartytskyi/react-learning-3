@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import { Form, Text, TodoList } from 'components';
+import { nanoid } from 'nanoid';
 
 export const Todos = () => {
   const [todos, setTodos] = useState(() => {
@@ -12,8 +13,8 @@ export const Todos = () => {
     localStorage.setItem('todos', JSON.stringify(todos));
   }, [todos]);
 
-  const addTodo = newTodo => {
-    setTodos(prevTodos => [...prevTodos, newTodo]);
+  const addTodo = value => {
+    setTodos(prevTodos => [...prevTodos, { text: value, id: nanoid() }]);
   };
 
   const deleteTodo = id => {
